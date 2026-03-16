@@ -1,2 +1,2 @@
-let cart = []; // {product, quantity}
+export const cart = []; // {product, quantity}
 

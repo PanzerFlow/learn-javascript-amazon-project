@@ -1,5 +1,9 @@
+import { products } from "../data/products.js";
+import { cart } from "../data/cart.js";
+
+const productsGrid = document.querySelector(".products-grid");
+
 products.forEach((product) => {
-  productsGrid = document.querySelector(".products-grid");
   productsGrid.innerHTML += `
           <div class="product-container">
           <div class="product-image-container">
