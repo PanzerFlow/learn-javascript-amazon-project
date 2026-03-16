@@ -17,3 +17,7 @@ export function addToCart(productId, cart) {
       cart.push({product: productId, quantity: 1});
     }
 }
+
+export function removeFromCart(productId, cart) {
+    cart = cart.filter((cartItem) => cartItem.product !== productId);
+}
