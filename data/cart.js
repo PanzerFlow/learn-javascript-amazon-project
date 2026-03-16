@@ -29,3 +29,9 @@ export function removeFromCart(productId, cart) {
     cart = cart.filter((cartItem) => cartItem.productId !== productId);
     saveToStorage(cart);
 }
+
+export function updateDeliveryOption(productId, deliveryOptionId, cart) {
+  const cartItem = cart.find((cartItem) => cartItem.productId === productId);
+  cartItem.deliveryOptionId = deliveryOptionId;
+  saveToStorage(cart);
+}
