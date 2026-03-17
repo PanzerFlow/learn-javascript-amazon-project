@@ -15,6 +15,7 @@ export function renderOrderSummary()
     const deliveryOption = getDeliveryOption(deliveryOptions, cartItem.deliveryOptionId);
     orderSummaryHTML += `
             <div class="cart-item-container 
+              js-cart-item-container
               js-cart-item-container-${product.id}">
               <div class="delivery-date">
                 Delivery date: ${today.add(deliveryOption.deliveryDays, "day").format('dddd, MMMM D')}
@@ -31,14 +32,17 @@ export function renderOrderSummary()
                   <div class="product-price">
                     ${formatCurrency(product.priceCents)}
                   </div>
-                  <div class="product-quantity">
+                  <div class="product-quantity 
+                    js-product-quantity-${product.id}
+                  ">
                     <span>
                       Quantity: <span class="quantity-label">${cartItem.quantity}</span>
                     </span>
                     <span class="update-quantity-link link-primary">
                       Update
                     </span>
-                    <span class="delete-quantity-link link-primary js-delete-link"
+                    <span class="delete-quantity-link link-primary js-delete-link 
+                      js-delete-link-${product.id}"
                       data-product-id="${product.id}">
                       Delete
                     </span>
@@ -88,8 +92,8 @@ export function renderOrderSummary()
 
           renderOrderSummary();
           renderPaymentSummary();
-      }
-  )});
+      });
+  });
 
   document.querySelectorAll(".js-delivery-option").forEach((element) => {
     element.addEventListener("click", () => {
