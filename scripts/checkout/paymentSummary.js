@@ -5,6 +5,7 @@ import { formatCurrency } from "../utils/money.js";
 import dayjs from "https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js";
 
 export function renderPaymentSummary() {
+    // Model
     let productPriceCents = 0;
     let shippingCents = 0;
     cart.forEach((cartItem) => {
@@ -21,8 +22,8 @@ export function renderPaymentSummary() {
     const taxCents = Math.round(subtotalCents * 0.1);
 
     const TotalCents = subtotalCents + taxCents;
-    
-    // WIP Marker: Just started looking into the payment summary html 15:20
+
+    //View
     const paymentSummaryHTML = `
         <div class="payment-summary-title">
             Order Summary

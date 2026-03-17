@@ -13,4 +13,7 @@ C - Controller
 Model - data and business logic
 View - what user sees
 Controller - handles user interaction, updates model, updates view
+
+
+Update the data, Update the HTML, Update the page
 */

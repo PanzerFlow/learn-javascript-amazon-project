@@ -1,6 +1,7 @@
 import { products, getProduct } from "../../data/products.js";
 import { cart, addToCart, removeFromCart, updateDeliveryOption } from "../../data/cart.js";
 import { deliveryOptions, getDeliveryOption } from "../../data/deliveryOptions.js";
+import { renderPaymentSummary } from "./paymentSummary.js";
 import { formatCurrency } from "../utils/money.js";
 import dayjs from "https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js";
 
@@ -84,7 +85,9 @@ export function renderOrderSummary()
       deleteLink.addEventListener("click", () => {
           const productId = deleteLink.dataset.productId;
           removeFromCart(productId, cart);
-          document.querySelector(`.js-cart-item-container-${productId}`).remove();
+
+          renderOrderSummary();
+          renderPaymentSummary();
       }
   )});
 
@@ -93,7 +96,9 @@ export function renderOrderSummary()
       const productId = element.dataset.productId;
       const deliveryOptionId = element.dataset.deliveryOptionId;
       updateDeliveryOption(productId, deliveryOptionId, cart);
+
       renderOrderSummary();
+      renderPaymentSummary();
     })
   })
 }
