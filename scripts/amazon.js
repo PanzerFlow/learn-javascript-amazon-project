@@ -1,4 +1,4 @@
-import { products } from "../data/products.js";
+import { products, ClothingProduct } from "../data/products.js";
 import { cart, addToCart} from "../data/cart.js";
 
 const productsGrid = document.querySelector(".products-grid");
@@ -42,6 +42,8 @@ products.forEach((product) => {
             </select>
           </div>
 
+          ${product.extraInfoHTML()}
+          
           <div class="product-spacer"></div>
 
           <div class="added-to-cart">
