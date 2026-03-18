@@ -1,5 +1,5 @@
 https://www.youtube.com/watch?v=EerdGm-ehJQ&t=34s
-19:50 intro to backend
+20:03 intro to backend
 
 https://supersimplebackend.dev/documentation#get-hello
 
