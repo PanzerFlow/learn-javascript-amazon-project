@@ -50,18 +50,38 @@ export class ClothingProduct extends Product {
 
 export let products = [];
 
-export function loadProducts(fun) {
-  const xhr = new XMLHttpRequest()
-  xhr.addEventListener('load', () => {
-    products = JSON.parse(xhr.response).map((productDetails) => {
+export function loadProductsFetch() {
+  const promise = fetch(
+    'https://supersimplebackend.dev/products'
+  ).then((response)=>{
+    return response.json();
+  }).then((data)=>{
+    products = data.map((productDetails) => {
       if (productDetails.type === "clothing") {
         return new ClothingProduct(productDetails);
       }
       return new Product(productDetails);
     });
-    console.log('products loaded');
-    fun();
-  });
-  xhr.open('GET', 'https://supersimplebackend.dev/products');
-  xhr.send();
+  })
+  return promise;
 }
+
+// loadProductsFetch().then(()=>{
+//   console.log('next step loaded');
+// });
+
+// export function loadProducts(fun) {
+//   const xhr = new XMLHttpRequest()
+//   xhr.addEventListener('load', () => {
+//     products = JSON.parse(xhr.response).map((productDetails) => {
+//       if (productDetails.type === "clothing") {
+//         return new ClothingProduct(productDetails);
+//       }
+//       return new Product(productDetails);
+//     });
+//     console.log('products loaded');
+//     fun();
+//   });
+//   xhr.open('GET', 'https://supersimplebackend.dev/products');
+//   xhr.send();
+// }
