@@ -1,5 +1,5 @@
 https://www.youtube.com/watch?v=EerdGm-ehJQ&t=34s
-20:03 intro to backend
+21:13 into to async
 
 https://supersimplebackend.dev/documentation#get-hello
 
