@@ -3,6 +3,7 @@ import { cart, addToCart, removeFromCart, updateDeliveryOption } from "../../dat
 import { deliveryOptions, getDeliveryOption } from "../../data/deliveryOptions.js";
 import { formatCurrency } from "../utils/money.js";
 import dayjs from "https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js";
+import { addOrder } from "../../data/orders.js";
 
 export function renderPaymentSummary() {
     // Model
@@ -54,11 +55,31 @@ export function renderPaymentSummary() {
             <div class="payment-summary-money">$${formatCurrency(TotalCents)}</div>
         </div>
 
-        <button class="place-order-button button-primary">
+        <button class="place-order-button button-primary js-place-order-button">
             Place your order
         </button>
         `
         document.querySelector('.js-payment-summary').innerHTML = paymentSummaryHTML
-}
 
+
+        const jsPlaceOrderButton = document.querySelector('.js-place-order-button')
+        jsPlaceOrderButton.addEventListener('click', async () => {
+            const response = await fetch('https://supersimplebackend.dev/orders', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({cart:cart}),
+            })
+
+            if (!response.ok) {
+                throw new Error('Failed to place order');
+            }
+
+            const data = await response.json();
+            addOrder(data);
+            console.log('Order placed successfully');
+            window.location.href = 'orders.html';
+        });
+}
 
